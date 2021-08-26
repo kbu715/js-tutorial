@@ -1,22 +1,23 @@
 "use strict";
 // 이 코드는 모던한 방식으로 실행됩니다.
 
-let userName = prompt("사용자 이름을 입력해주세요.", '');
-
-if (userName == 'Admin') {
-
-  let pass = prompt('비밀번호:', '');
-
-  if (pass == 'TheMaster') {
-    alert( '환영합니다!' );
-  } else if (pass == '' || pass == null) {
-    alert( '취소되었습니다.' );
-  } else {
-    alert( '인증에 실패하였습니다.' );
-  }
-
-} else if (userName == '' || userName == null) {
-  alert( '취소되었습니다.' );
-} else {
-  alert( "인증되지 않은 사용자입니다." );
+function checkAge(age) {
+  return age > 18 ? true : confirm('보호자의 동의를 받으셨나요?');
 }
+  
+
+function min(a, b) {
+  return Math.min(a, b);
+}
+
+console.log(min(3, 5));
+
+function pow(a, b) {
+  let result = 1;
+  for (let index = 0; index < b; index++) {
+    result *= a;
+  }
+  return result;
+}
+
+console.log(pow(3, 3));
