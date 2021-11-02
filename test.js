@@ -1,3 +1,5 @@
+"use strict"
+
 function outer(outerValue) {
   return function inner(innerValue) {
     console.log(`outer value : ${outerValue}`);
@@ -20,3 +22,11 @@ console.log(Boolean("")); // false
 
 console.log(+true); // 1
 console.log(+""); // 0
+
+
+function sayHi() {
+  console.log(this); // "use strict" 가 아니면 this는 전역객체를 가리킨다.
+}
+
+sayHi();
+
