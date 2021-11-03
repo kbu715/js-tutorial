@@ -136,18 +136,18 @@ this의 값이 undefined가 되게 함수를 다시 작성하면 다음과 같�
 
 // 에러가 발생하지 않게 하려면 코드를 다음과 같이 수정하면 됩니다.
 
-function makeUser() {
-  return {
-    name: "John",
-    ref() {
-      return this;
-    }
-  };
-};
+// function makeUser() {
+//   return {
+//     name: "John",
+//     ref() {
+//       return this;
+//     }
+//   };
+// };
 
-let user = makeUser();
+// let user = makeUser();
 
-console.log( user.ref().name ); // John
+// console.log( user.ref().name ); // John
 
 // 이렇게 하면 user.ref()가 메서드가 되고 this는 . 앞의 객체가 되기 때문에 에러가 발생하지 않습니다.
 
@@ -177,24 +177,24 @@ console.log( user.ref().name ); // John
 // console.log( calculator.mul() );
 
 
-console.log('------------------');
-// 체이닝
+// console.log('------------------');
+// // 체이닝
 
-let ladder = {
-  step: 0,
-  up() {
-    this.step++;
-    return this;
-  },
-  down() {
-    this.step--;
-    return this;
-  },
-  showStep: function() { // 사다리에서 몇 번째 단에 올라와 있는지 보여줌
-    console.log( this.step );
-    return this;
-  }
-};
+// let ladder = {
+//   step: 0,
+//   up() {
+//     this.step++;
+//     return this;
+//   },
+//   down() {
+//     this.step--;
+//     return this;
+//   },
+//   showStep: function() { // 사다리에서 몇 번째 단에 올라와 있는지 보여줌
+//     console.log( this.step );
+//     return this;
+//   }
+// };
 
 
 // ladder.up();
@@ -204,4 +204,76 @@ let ladder = {
 
 // up, down, showStep을 수정해 아래처럼 메서드 호출 체이닝이 가능하도록 해봅시다.
 
-ladder.up().up().down().showStep(); // 1
+// ladder.up().up().down().showStep(); // 1
+
+
+
+
+// 함수 두개로 동일한 객체 만들기
+
+let commonObj = {};
+
+function A() { 
+  return commonObj;
+}
+function B() { 
+  return commonObj;
+}
+
+let a = new A;
+let b = new B;
+
+console.log( a == b ); // true
+
+
+
+
+
+
+// 계산기 만들기
+
+function Calculator() {
+
+  this.read = function () {
+    this.a = Number(prompt('입력', 0));
+    this.b = Number(prompt('입력', 0));
+  }
+
+  this.sum = function () {
+    return this.a + this.b;
+  }
+
+  this.mul = function () {
+    return this.a * this.b;
+  }
+  
+}
+
+let calculator = new Calculator();
+calculator.read();
+
+console.log( "Sum=" + calculator.sum() );
+console.log( "Mul=" + calculator.mul() );
+
+
+
+
+
+// 누산기 만들기
+
+function Accumulator(startingValue) {
+
+  this.value = startingValue;
+
+  this.read = function () {
+    let addValue = Number(prompt('더해줄 값:', 0));
+    this.value += addValue;
+  }
+}
+
+let accumulator = new Accumulator(15); // 최초값: 15
+
+accumulator.read(); // 사용자가 입력한 값을 더해줌
+accumulator.read(); // 사용자가 입력한 값을 더해줌
+
+alert(accumulator.value); // 최초값과 사용자가 입력한 모든 값을 더해 출력함
