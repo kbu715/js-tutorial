@@ -102,3 +102,80 @@ let guestList = `손님:
 `;
 
 console.log(guestList); // 손님 리스트를 여러 줄에 걸쳐 작성함
+
+
+
+
+// 첫 글자를 대문자로 변경하기
+
+function ucFirst(str) {
+  if(!str) return str;
+
+  let newStr = str[0].toUpperCase() + str.slice(1);
+  return newStr;
+}
+
+alert(ucFirst("john") === "John");
+
+
+
+
+
+
+// 스팸 문자열 걸러내기
+
+
+function checkSpam(str) {
+  let lowerStr = str.toLowerCase();
+  if(lowerStr.includes('viagra') || lowerStr.includes('xxx')) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+alert(checkSpam('buy ViAgRA now'));
+alert(checkSpam('free xxxxx'));
+alert(checkSpam("innocent rabbit"));
+
+// checkSpam('buy ViAgRA now') == true
+// checkSpam('free xxxxx') == true
+// checkSpam("innocent rabbit") == false
+
+
+
+
+// 문자열줄이기
+
+// truncate("What I'd like to tell on this topic is:", 20) = "What I'd like to te…"
+
+// truncate("Hi everyone!", 20) = "Hi everyone!"
+
+function truncate(str, maxLength) {
+  if(str.length > maxLength) {
+    return str.slice(0, maxLength-1) + '...'
+  }
+  return str;
+}
+
+let longStr = truncate("What I'd like to tell on this topic is:", 20);
+let shortStr = truncate("Hi everyone!", 20);
+
+console.log(longStr);
+console.log(shortStr);
+
+
+
+
+
+// 숫자만 출력하기
+
+function extractCurrencyValue(str) {
+  return Number(str.slice(1));
+}
+
+
+console.log(extractCurrencyValue('$120') === 120);
+
+
+// alert( extractCurrencyValue('$120') === 120 ); // true
