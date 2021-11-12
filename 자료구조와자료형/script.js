@@ -179,3 +179,93 @@ console.log(extractCurrencyValue('$120') === 120);
 
 
 // alert( extractCurrencyValue('$120') === 120 ); // true
+
+
+
+
+
+
+
+
+
+
+
+
+// 배열은 복사가 될까요?
+
+// 배열은 객체다
+
+
+
+
+
+
+// 배열과 관련된 연산
+
+
+// 1. 요소 “Jazz”, "Blues"가 있는 styles 배열을 생성합니다.
+
+let styles = ["Jazz", "Blues"];
+
+// 2."Rock-n-Roll"을 배열 끝에 추가합니다.
+
+styles.push("Rock-n-Roll");
+console.log(styles);
+// 배열 정 중앙에 있는 요소를 "Classics"로 바꿉니다. 가운데 요소를 찾는 코드는 요소가 홀수 개인 배열에서도 잘 작동해야 합니다.
+
+styles[Math.floor((styles.length - 1) / 2)] = "Classics";
+
+// 배열의 첫 번째 요소를 꺼내서 출력합니다.
+
+console.log(styles.shift());
+
+// "Rap"과 "Reggae"를 배열의 앞에 추가합니다.
+
+styles.unshift(["Rap", "Reggae"]);
+console.log(styles);
+
+
+
+
+
+
+
+
+
+// 배열 컨텍스트에서 함수 호출하기
+
+let arr = ["a", "b"];
+
+arr.push(function() {
+  alert( this );
+})
+
+arr[2](); // ? // arr을 출력 // a,b,function(){...}
+
+
+// 입력한 숫자의 합 구하기
+
+function sumInput() {
+
+  let numbers = [];
+
+  while (true) {
+
+    let value = prompt("숫자를 입력해 주세요.", 0);
+
+    // 입력받는 것을 정지해야 하는 경우
+    if (value === "" || value === null || !isFinite(value)) break;
+
+    numbers.push(+value);
+  }
+
+  // let sum = 0;
+  // for (let number of numbers) {
+  //   sum += number;
+  // }
+  // return sum;
+
+  return numbers.reduce((acc, cur) => acc+cur, 0);
+}
+
+alert( sumInput() );
