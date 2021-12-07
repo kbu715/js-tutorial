@@ -109,7 +109,7 @@ promise.then(
 
 
 ```javascript
-et promise = new Promise((resolve, reject) => {
+let promise = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error("에러 발생!")), 1000);
 });
 
