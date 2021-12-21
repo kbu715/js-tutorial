@@ -60,3 +60,29 @@ new Promise(function(resolve, reject) {
 하지만 여기에서 에러는 executor(실행자, 실행 함수)가 실행되는 동안이 아니라 나중에 발생합니다. 따라서 프라미스는 에러를 처리할 수 없습니다.
 
 */
+
+
+
+
+
+
+// async await으로 변환
+async function loadJson(url) {
+  let response = await fetch(url);
+  if(response.status === 200) {
+    return response.json();
+  }
+  throw new Error(response.status);
+
+  // return fetch(url)
+  //   .then(response => {
+  //     if (response.status == 200) {
+  //       return response.json();
+  //     } else {
+  //       throw new Error(response.status);
+  //     }
+  //   })
+}
+
+loadJson('no-such-user.json')
+  .catch(alert); // Error: 404
